@@ -43,7 +43,7 @@ Cluely serves as a virtual assistant that helps users understand web pages. The 
 
 ## 🟧 Section 2. Problems with Current Flow
 
-### 🚩 Key Limitations
+### Key Limitations
 
 | Problem                   | Description                                                  | Impact on User                   |
 |---------------------------|--------------------------------------------------------------|----------------------------------|
@@ -63,7 +63,7 @@ Cluely serves as a virtual assistant that helps users understand web pages. The 
 | **Best For**              | Any website (UI-based tasks)                            | Systems with public/internal APIs                 |
 | **Speed/Reliability**     | Slower, UI can change                                   | Fast, stable if API maintained                    |
 
-### 🖼️ Visual Comparison
+### Visual Comparison
 
 ```
 [User Request]
@@ -82,10 +82,10 @@ Cluely serves as a virtual assistant that helps users understand web pages. The 
 
 ## 🟦 Section 4. Solution 1: Web Interaction Agent
 
-### 🌐 What Is It?
+### What Is It?
 A closed-loop automation system where Cluely observes the website, retrieves relevant guidance, makes decisions using an LLM, and performs actions via browser automation. The process repeats—adapting to feedback—until the task is successfully completed or cannot proceed.
 
-### 🛠️ Key Components
+### Key Components
 - **User Request:** The starting point; user instructs Cluely to perform a task.
 - **Cluely Agent:** Captures a screenshot and DOM structure of the website to understand the current state.
 - **RAG (Retrieval-Augmented Generation):** Queries the Help Desk Center documents for context and guidance related to the user’s request.
@@ -93,7 +93,7 @@ A closed-loop automation system where Cluely observes the website, retrieves rel
 - **Browser Automation Tool:** Executes the decided action (click, type, navigate, etc.) in the browser. Examples: [browserpilot](https://github.com/handrew/browserpilot), [LaVague](https://github.com/lavague-ai/LaVague), [HyperBrowser](https://python.langchain.com/docs/integrations/providers/hyperbrowser/).
 - **Website State & Success Check:** After each action, the system checks if the task is complete. If not, the loop restarts with a new screenshot and updated guidance.
 
-### 🔄 Step-by-Step Process
+### Step-by-Step Process
 1. **User Request:** User asks Cluely to perform a task on a website.
 2. **Screenshot & DOM:** Cluely Agent captures the current state of the page.
 3. **Query RAG:** Cluely Agent queries the Help Desk Center for relevant guidance.
@@ -104,7 +104,7 @@ A closed-loop automation system where Cluely observes the website, retrieves rel
     - **Yes:** Task is complete; report success to user.
     - **No:** Loop back to step 2 with updated context and try again.
 
-### 🏗️ Architecture Overview (Detailed)
+### Architecture Overview (Detailed)
 
 ```
 +---------------------+
@@ -154,7 +154,7 @@ A closed-loop automation system where Cluely observes the website, retrieves rel
 
 - The loop continues: If success, the flow ends. If not, Cluely Agent re-observes, re-queries, and tries again until the task is complete.
 
-### 🔢 Step-by-Step Sequence Diagram
+### Step-by-Step Sequence Diagram
 ```
 User        Cluely Agent   RAG    LLM Engine   Browser Auto   Website
  |               |         |         |             |            |
@@ -175,10 +175,10 @@ User        Cluely Agent   RAG    LLM Engine   Browser Auto   Website
 
 ## 🟧 Section 5. Solution 2: API-based Execution
 
-### ⚡ What Is It?
+### What Is It?
 A fully automated system where Cluely leverages both Help Desk and API documentation to directly generate and execute API calls, bypassing the user interface for speed, reliability, and precision.
 
-### 🛠️ Key Components
+### Key Components
 - **User Request:** Initiates the process with a task or question.
 - **Cluely Agent:** Interprets the request, understands the current state, and manages the workflow.
 - **RAG (Retrieval-Augmented Generation):** Queries Help Desk Center docs and API documentation for relevant information and endpoint details.
@@ -186,7 +186,7 @@ A fully automated system where Cluely leverages both Help Desk and API documenta
 - **API Executor:** Executes the API call(s) as determined by the LLM.
 - **System State & Success Check:** After each API call, checks if the desired outcome is achieved; if not, loops back for another decision.
 
-### 🔄 Step-by-Step Process
+### Step-by-Step Process
 1. **User Request:** User asks Cluely to perform a task.
 2. **Query RAG:** Cluely Agent fetches relevant guidance from Help Desk and API docs.
 3. **LLM Decision:** LLM Engine analyzes all information and decides the next API call.
@@ -196,7 +196,7 @@ A fully automated system where Cluely leverages both Help Desk and API documenta
     - **Yes:** Task is complete; report success to user.
     - **No:** Loop back to step 2 with updated context and try again.
 
-### 🏗️ Architecture Overview (Detailed)
+### Architecture Overview (Detailed)
 ```
 +---------------------+
 |    User Request     |
@@ -276,7 +276,7 @@ User      Cluely Agent    RAG Engine    LLM Engine    API Executor    System
 | **Complexity** | Emulates user, handles UI quirks     | Needs accurate API docs, error-handling|
 | **Implementation** | Browser automation + LLM         | RAG API docs + LLM                   |
 
-### 🔀 Hybrid Approach: Best of Both Worlds
+### Hybrid Approach: Best of Both Worlds
 A robust solution combines both methods:
 - **Primary:** Use API-based execution whenever possible for speed and reliability.
 - **Fallback:** Seamlessly switch to the Web Interaction Agent if APIs are unavailable, incomplete, or return errors.
