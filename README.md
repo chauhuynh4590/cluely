@@ -104,7 +104,7 @@ A closed-loop automation system where Cluely observes the website, retrieves rel
     - **Yes:** Task is complete; report success to user.
     - **No:** Loop back to step 2 with updated context and try again.
 
-### Architecture Overview (Detailed)
+### Architecture Overview
 
 ```
 +---------------------+
@@ -196,7 +196,7 @@ A fully automated system where Cluely leverages both Help Desk and API documenta
     - **Yes:** Task is complete; report success to user.
     - **No:** Loop back to step 2 with updated context and try again.
 
-### Architecture Overview (Detailed)
+### Architecture Overview
 ```
 +---------------------+
 |    User Request     |
