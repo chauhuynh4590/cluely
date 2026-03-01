@@ -1,0 +1,41 @@
+[project]
+name = "cluely"
+version = "0.1.0"
+description = "Chat translation add-on — translate messages across chat platforms"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "slack-bolt>=1.20",
+    "openai>=1.50",
+    "deep-translator>=1.11",
+    "aiosqlite>=0.20",
+    "pydantic-settings>=2.0",
+]
+
+[project.scripts]
+cluely = "cluely.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cluely"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+src = ["src"]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.8",
+]
